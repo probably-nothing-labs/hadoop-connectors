@@ -31,10 +31,19 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.flogger.GoogleLogger;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+
 import java.net.URI;
 import java.time.Instant;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import org.apache.hadoop.conf.Configuration;
@@ -389,8 +398,6 @@ public class HadoopCredentialsConfiguration {
     UNAUTHENTICATED,
     /** Configures user credentials authentication */
     USER_CREDENTIALS,
-
-    AWS_SECRETS_MANAGER_KEY
   }
 
   public static String getAWSSecret(String secretName, String regionName) {
